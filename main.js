@@ -15,10 +15,11 @@ function calculate() {
   fetch(`https://v6.exchangerate-api.com/v6/b69f68291cd05b5fb6b4a150/latest/${currency_one}`)
     .then(res => res.json())
     .then(data => {
-      const rate = data.rates[currency_two];
+     // console.log(data); //show data in json format confirmed
+
+      const rate = data.rates[currency_two] / data.rates[currency_one];
 
       rateEl.innerText = `1 ${currency_one} = ${rate} ${currency_two}`;
-
       amountEl_two.value = (amountEl_one.value * rate).toFixed(2);
 
     });
